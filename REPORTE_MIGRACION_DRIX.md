@@ -1,8 +1,40 @@
 # REPORTE PARA EL DIRECTOR — Migración SIGEA a cuenta institucional
 
-Fecha: 2026-07-03
+Fecha: 2026-07-03 (actualizado — migración confirmada y verificada)
 De: Seba (smardones) — asistido por Claude Code
 Para: Director DR Araucanía
+
+═══════════════════════════════════════════════════════════════
+ECOSISTEMA — LINKS DE REFERENCIA (para documentación)
+═══════════════════════════════════════════════════════════════
+OJO: el usuario GitHub institucional es "direccionregionalix-star"
+(con sufijo "-star" — "direccionregionalix" a secas ya estaba tomado
+por otra cuenta). Cualquier documentación futura debe usar el nombre
+completo con sufijo.
+
+SIGEA (este sistema — plugin + dashboard + mail):
+  - Repo código:     github.com/direccionregionalix-star/sigea_estado
+  - estado.json:     raw.githubusercontent.com/direccionregionalix-star/sigea_estado/main/estado.json
+  - plugins.xml:      raw.githubusercontent.com/direccionregionalix-star/sigea_estado/main/plugins.xml
+  - Dashboard web:    https://web-production-17ce60.up.railway.app
+  - Proyecto Railway: nombre auto-generado por Railway (revisar en el
+    dashboard de Railway cuál service corresponde — se creó como
+    proyecto nuevo y separado del resto).
+
+SIGE (geocodificador v4.2 "Dratini" — herramienta de terreno, repo distinto):
+  - Proyecto Railway: "skillful-flow" → sigeraildrix-production.up.railway.app
+  - Repo: SIGE_RAIL_DRIX (no gestionado por Claude Code en esta sesión)
+
+Otros proyectos Railway de la cuenta institucional (confirmar detalle
+con Seba al documentar — no se tocaron en esta migración):
+  - Bot Telegram de captura de recintos — 2 instancias (pruebas + producción)
+  - Web visor de levantamientos del bot
+  - Blog personal
+  (nombres Railway: "site", "resplendent-enthusiasm", "loyal-perfection",
+  "soothing-respect" — falta mapear cada uno a su función exacta)
+
+Repo personal DEPRECADO (ya no es producción, se mantiene como historial):
+  - github.com/SebaGeoZ92/sigea_estado
 
 ═══════════════════════════════════════════════════════════════
 CONTEXTO — POR QUÉ MIGRAMOS
@@ -74,14 +106,21 @@ ESTADO ACTUAL — CHECKLIST
 [x] plugins.xml y zip v2.1.0 servidos desde repo institucional
 [x] Código de envío de correo real + copia automática al supervisor
 [x] Mensaje a funcionarios enviado con instrucciones de reconexión
+[x] Bug detectado y corregido: el usuario GitHub real es
+    "direccionregionalix-star" (no "direccionregionalix"), causaba
+    404 en dashboard, config QGIS y repositorio de plugins. Todas las
+    URLs corregidas y verificadas (estado.json, plugins.xml, zip → 200 OK).
 
 [ ] VERIFICACIÓN END-TO-END — pendiente, es el siguiente paso crítico:
-    - Confirmar que el correo real efectivamente llega (probar con una
-      entrega de prueba y revisar logs de Railway).
-    - Confirmar que cada funcionario reconectó su QGIS correctamente.
-    - Confirmar que el dashboard público muestra datos vivos desde el
-      repo nuevo.
-    - Probar la pestaña "Entregas SIGE" del modo admin con un xlsx real.
+    - [x] estado.json, plugins.xml y el zip cargan bien (verificado hoy).
+    - [ ] Confirmar visualmente que el dashboard muestra los datos
+      (colega ya lo vio cargar antes del fix del "-star"; falta
+      confirmar post-fix).
+    - [ ] Confirmar que el correo real efectivamente llega (probar con
+      una entrega de prueba y revisar logs de Railway).
+    - [ ] Confirmar que cada funcionario reconectó su QGIS con las URLs
+      corregidas (con "-star").
+    - [ ] Probar la pestaña "Entregas SIGE" del modo admin con un xlsx real.
 
 [ ] CIERRE DE LA CUENTA VIEJA — pendiente, no bloquea nada:
     - Revocar el token personal de SebaGeoZ92 (ya no se usa para nada).

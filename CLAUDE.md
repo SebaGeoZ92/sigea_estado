@@ -25,20 +25,27 @@ instrucción explícita.
 ═══════════════════════════════════════════════════════════════
 ARQUITECTURA DE REPOS — ESTADO REAL Y DEUDA
 ═══════════════════════════════════════════════════════════════
-REALIDAD ACTUAL (no aspiracional):
-  Hoy existe UN SOLO estado.json de producción, y vive en el repo PERSONAL
-  SebaGeoZ92/sigea_estado (público). Es el que el plugin sirve a los
-  funcionarios. Su campo "_r" apunta a SebaGeoZ92/sigea_estado. Esto es
-  correcto HOY: producción = personal. No es un error a corregir en el código.
+REALIDAD ACTUAL (no aspiracional) — actualizado 2026-07-03, MIGRADO:
+  Producción vive en el repo institucional DRIX:
+  direccionregionalix-star/sigea_estado (público). OJO con el sufijo
+  "-star": el usuario GitHub real NO es "direccionregionalix" a secas
+  (ese nombre estaba tomado). Cualquier URL que arme código, docs o
+  configuración de funcionarios DEBE usar "direccionregionalix-star".
 
-  Razón: el conector de Claude Code solo llega al repo personal, y la cuenta
-  institucional DRIX (direccionregionalix@gmail.com) está separada. Railway
-  deploya desde donde Seba lo configure; hoy el estado vive en personal.
+  El plugin sirve a los funcionarios desde ahí. Campo "_r" en estado.json
+  apunta a "direccionregionalix-star/sigea_estado". Dashboard + servidor
+  de mail corren en Railway, proyecto propio y separado de SIGE:
+  https://web-production-17ce60.up.railway.app
 
-DEUDA EXPLÍCITA (pendiente, no urgente):
-  Migrar producción al repo institucional DRIX cuando sea viable. Mientras
-  estado.json NO contenga datos sensibles, el riesgo es BAJO. El día que la
-  bitácora crezca con más detalle, revisar esta deuda antes de seguir.
+  El repo personal SebaGeoZ92/sigea_estado queda DEPRECADO — ya no es
+  producción, se mantiene solo como historial. No usar su URL en nada
+  nuevo.
+
+DEUDA CERRADA:
+  La migración a DRIX (pendiente desde Sprint 1) se completó. Ver
+  REPORTE_MIGRACION_DRIX.md para el detalle de qué se hizo y qué queda
+  pendiente (verificación end-to-end, integración SIGE↔SIGEA, cierre
+  formal del repo personal).
 
 REGLA NO SE TOCA — datos sensibles:
   estado.json / bitacora.json llevan SOLO metadata de proceso y CONTEOS
