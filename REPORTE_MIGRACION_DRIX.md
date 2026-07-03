@@ -23,7 +23,10 @@ QUÉ SE HIZO
 
 1. MIGRACIÓN DEL REPOSITORIO
    - Repo importado completo (código + historial) de SebaGeoZ92/sigea_estado
-     a direccionregionalix/sigea_estado. Público, igual que antes.
+     a direccionregionalix-star/sigea_estado. Público, igual que antes.
+     (Nota: el usuario GitHub institucional quedó con sufijo "-star"
+     porque "direccionregionalix" ya estaba tomado — hubo que corregir
+     todas las URLs una vez detectado.)
    - Token de escritura nuevo generado en la cuenta institucional
      (fine-grained, acotado solo a este repo, permiso Contents R/W).
    - estado.json actualizado con el nuevo repo destino (_r) y token
