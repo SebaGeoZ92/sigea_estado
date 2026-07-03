@@ -582,6 +582,15 @@ class AdminDialog(QDialog):
                     bitacora.evento_entrega(codigo, usuario, conteos, total)
             except Exception:
                 pass
+
+            # Correo de entrega — el servidor agrega copia automática al
+            # supervisor (SIGEA_SUPERVISOR_MAIL en Railway).
+            try:
+                from . import mailer
+                mailer.enviar_mail(usuario, "entrega", codigo, usuario)
+            except Exception:
+                pass
+
             self._lbl_ent_msg.setText(f"✓ {msg}")
             self._lbl_ent_msg.setStyleSheet("color:#2e7d32;font-size:11px;")
 

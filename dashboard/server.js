@@ -31,6 +31,11 @@ const MAIL_FROM = process.env.SIGEA_MAIL_FROM || SMTP_USER;
 const SIGEA_REPO = process.env.SIGEA_REPO || "SebaGeoZ92/sigea_estado";
 const GH_RAW_BASE = `https://raw.githubusercontent.com/${SIGEA_REPO}/main`;
 
+// Correo del supervisor — recibe copia automática cuando un funcionario
+// entrega (tipo="entrega"), para poder hacer QA sin esperar aviso manual.
+// SIGEA_SUPERVISOR_MAIL=smardones@servel.cl
+const SUPERVISOR_MAIL = process.env.SIGEA_SUPERVISOR_MAIL || "";
+
 // Mapa funcionario → email (configurable por variable de entorno JSON)
 // SIGEA_MAILS='{"igarrido":"i.garrido@servel.cl", ...}'
 let MAILS_FUNCIONARIOS = {};
@@ -68,7 +73,7 @@ const CUERPOS = {
 
 // ─── Envío SMTP (sin dependencias externas — usa net/tls de Node) ─────────────
 
-function enviarSMTP(destinatario, asunto, cuerpo) {
+function enviarSMTP(destinatario, asunto, cuerpo, cc) {
   return new Promise((resolve, reject) => {
     if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
       resolve({ simulado: true });
@@ -83,7 +88,7 @@ function enviarSMTP(destinatario, asunto, cuerpo) {
         auth: { user: SMTP_USER, pass: SMTP_PASS },
       });
       transporter.sendMail({
-        from: MAIL_FROM, to: destinatario,
+        from: MAIL_FROM, to: destinatario, ...(cc ? { cc } : {}),
         subject: asunto, text: cuerpo,
       }, (err, info) => {
         if (err) reject(err);
@@ -236,15 +241,20 @@ const server = http.createServer(async (req, res) => {
       const asunto = buildAsunto(recinto, funcionario || "");
       const cuerpo = buildCuerpo(recinto, funcionario || "");
 
+      // Copia automática al supervisor cuando un funcionario entrega —
+      // así puede hacer QA sin depender de un aviso manual.
+      const cc = (tipo === "entrega" && SUPERVISOR_MAIL && SUPERVISOR_MAIL !== emailDest)
+        ? SUPERVISOR_MAIL : null;
+
       let enviado = false;
       let info = {};
       try {
-        info = await enviarSMTP(emailDest, asunto, cuerpo);
+        info = await enviarSMTP(emailDest, asunto, cuerpo, cc);
         enviado = !info.simulado;
         if (info.simulado) {
-          console.log(`[mail simulado] → ${emailDest} | ${asunto}`);
+          console.log(`[mail simulado] → ${emailDest}${cc ? " (cc " + cc + ")" : ""} | ${asunto}`);
         } else {
-          console.log(`[mail enviado] → ${emailDest} | ${asunto}`);
+          console.log(`[mail enviado] → ${emailDest}${cc ? " (cc " + cc + ")" : ""} | ${asunto}`);
         }
       } catch (e) {
         console.error(`[mail error] ${e.message}`);

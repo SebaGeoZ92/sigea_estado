@@ -6,10 +6,9 @@ Funcionarios que trabajan en SIGE web (ej. pfigueroa) entregan
 carpeta OneDrive. Este módulo escanea, valida e integra esas entregas al
 mismo flujo QA_pendiente / estado.json / bitácora del plugin QGIS.
 
-DECISIÓN ARQUITECTURAL (no cambiar sin autorización del Director):
-  Mail en SIMULACIÓN. server.js existe pero Railway no está montado en
-  este sprint. Se llama evento_mail() con enviado=False. El servidor real
-  se monta en un sprint aparte.
+MAIL: se envía vía mailer.enviar_mail(), que llama al servidor Railway
+  (URL en estado.json campo '_mail'). Si '_mail' no está configurado o la
+  llamada falla, cae a simulación local — no bloquea el flujo del funcionario.
 
 REGLA: detalle de bitácora = solo conteos numéricos y metadata de proceso.
   run, coordenadas y direcciones NUNCA salen a GitHub.
@@ -363,14 +362,12 @@ def procesar_entrega_sige(recinto, usuario, ruta_xlsx, filas_validadas):
     if not ok_b:
         avisos.append(f"bitácora: {msg_b}")
 
-    # ── 4. Mail simulado ──────────────────────────────────────────────────
-    # Railway no montado en este sprint — enviado=False siempre.
+    # ── 4. Correo de entrega ───────────────────────────────────────────────
     # Clave del destinatario = usuario exacto de estado.json (sin transformar).
-    asunto = f"[SIGEA] Entrega SIGE recinto {recinto} — {usuario}"
-    bitacora.evento_mail(recinto, usuario,
-                         destinatario=usuario,
-                         asunto=asunto,
-                         enviado=False)
+    # El servidor agrega copia automática al supervisor si '_mail' está
+    # configurado en estado.json; si no, cae a simulación local.
+    from . import mailer
+    mailer.enviar_mail(usuario, "entrega", recinto, usuario)
 
     estado_txt = 'con excepciones' if con_exc else 'ok'
     gj_txt = ' + geojson' if tiene_gj else ''
