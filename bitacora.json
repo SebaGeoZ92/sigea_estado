@@ -236,6 +236,21 @@
    "detalle": {
     "asignado_por": "jmedina"
    }
+  },
+  {
+   "ts": "2026-07-06T20:51:52+00:00",
+   "tipo": "avance",
+   "recinto": "01485",
+   "funcionario": "igarrido",
+   "detalle": {
+    "calle": 303,
+    "no_geo": 594,
+    "localidad": 236,
+    "fuera_comuna": 34,
+    "exacto": 351,
+    "total": 1587,
+    "pct": 95.7
+   }
   }
  ]
 }
