@@ -166,6 +166,17 @@
     "asunto": "[SIGEA] entrega — recinto 01346",
     "enviado": false
    }
+  },
+  {
+   "ts": "2026-07-06T19:55:14+00:00",
+   "tipo": "mail",
+   "recinto": "01346",
+   "funcionario": "jmedina",
+   "detalle": {
+    "destinatario": "jmedina",
+    "asunto": "[SIGEA] entrega — recinto 01346",
+    "enviado": false
+   }
   }
  ]
 }
