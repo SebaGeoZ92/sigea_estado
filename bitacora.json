@@ -177,6 +177,16 @@
     "asunto": "[SIGEA] entrega — recinto 01346",
     "enviado": false
    }
+  },
+  {
+   "ts": "2026-07-06T19:55:45+00:00",
+   "tipo": "qa",
+   "recinto": "01346",
+   "funcionario": "jmedina",
+   "detalle": {
+    "resultado": "aprobado",
+    "comentario": ""
+   }
   }
  ]
 }
