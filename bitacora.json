@@ -227,6 +227,15 @@
     "resultado": "aprobado",
     "comentario": ""
    }
+  },
+  {
+   "ts": "2026-07-06T19:58:38+00:00",
+   "tipo": "asignacion",
+   "recinto": "01393",
+   "funcionario": "jmedina",
+   "detalle": {
+    "asignado_por": "jmedina"
+   }
   }
  ]
 }
