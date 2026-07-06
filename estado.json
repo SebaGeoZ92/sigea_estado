@@ -1,5 +1,5 @@
 {
- "generado": "2026-07-01T12:24:23+00:00",
+ "generado": "2026-07-06T19:53:46+00:00",
  "funcionarios": {
   "igarrido": {
    "asignacion_id": 12,
@@ -77,7 +77,9 @@
      "herramienta": "qgis",
      "tipo_origen": "recinto"
     }
-   ]
+   ],
+   "liberado": true,
+   "estado_flujo": "en_qa"
   },
   "pfigueroa": null
  },
