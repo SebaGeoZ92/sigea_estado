@@ -1,5 +1,5 @@
 {
- "generado": "2026-07-06T19:55:16+00:00",
+ "generado": "2026-07-06T19:58:38+00:00",
  "funcionarios": {
   "igarrido": {
    "asignacion_id": 12,
@@ -54,32 +54,30 @@
    ]
   },
   "jmedina": {
-   "asignacion_id": 1782908663,
-   "codigo": "01346",
-   "unidad": "ESCUELA GUSTAVO VASQUEZ DIAZ",
-   "comuna": "09206",
-   "n_electores": 1087,
-   "fecha_estimada": "2026-07-16",
+   "asignacion_id": 1783367917,
+   "codigo": "01393",
+   "unidad": "LICEO POLITECNICO DOMINGO SANTA MARIA",
+   "comuna": "09209",
+   "n_electores": 1027,
+   "fecha_estimada": "2026-07-21",
    "dias_restantes": 15,
    "avance": 0,
    "herramienta": "qgis",
    "tipo_origen": "recinto",
    "asignaciones": [
     {
-     "asignacion_id": 1782908663,
-     "codigo": "01346",
-     "unidad": "ESCUELA GUSTAVO VASQUEZ DIAZ",
-     "comuna": "09206",
-     "n_electores": 1087,
-     "fecha_estimada": "2026-07-16",
+     "asignacion_id": 1783367917,
+     "codigo": "01393",
+     "unidad": "LICEO POLITECNICO DOMINGO SANTA MARIA",
+     "comuna": "09209",
+     "n_electores": 1027,
+     "fecha_estimada": "2026-07-21",
      "dias_restantes": 15,
      "avance": 0,
      "herramienta": "qgis",
      "tipo_origen": "recinto"
     }
-   ],
-   "liberado": true,
-   "estado_flujo": "en_qa"
+   ]
   },
   "pfigueroa": null
  },
